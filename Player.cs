@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace day15battleship
 {
+   
     internal class Player
     {
         public Ship[] _Ships;
         public GameField _GameField;
         public bool _error=true;
-
+        Random random = new Random();
         public Player()
         {
             _Ships = new Ship[5];//5개의 Ship이 들어간 배열
@@ -77,6 +78,11 @@ namespace day15battleship
             return true;//배가 분리되어 있다.
         }
 
+        public void RandomShipSet()
+        {
+
+            random.Next(0, 5);
+        }
 
     }
 }

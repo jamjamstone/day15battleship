@@ -67,7 +67,7 @@ namespace day15battleship
                         if (isKeyRight(pressedKey))
                         {
                             pressedKey = Console.ReadKey();
-                            _player._Ships[0].ReadAndSetShip(pressedKey);// 할당 실패해도 넘어감 다시 할당받게 해야함
+                            _player._Ships[0].ReadAndSetShip(pressedKey);// 할당 실패해도 넘어감 다시 할당받게 해야함=> 해결
                             if (!_player._Ships[0]._shipError)
                             {
                                 settingShipSwitch = false;
@@ -219,6 +219,9 @@ namespace day15battleship
                 }//여기까지 진행시 1~5번까지의 모든 배의 좌표가 설정된다.//배가 겹쳐있을 경우 생각 안되있음 
                 _player.SetPlayerShipToField(_player._GameField, _player._Ships[4]);
             }
+            /// 컴퓨터가 무작위로 배의 위치를 설정하는 기능
+            /// 플레이어와 컴퓨터가 번갈아 가면서 플레이 하는 기능
+            /// 턴 구현, 쏘는 것, 맞았는지 체크하기, 맞았을 때 침몰이면 침몰표시
 
 
 
