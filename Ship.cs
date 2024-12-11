@@ -18,6 +18,7 @@ namespace day15battleship
     {
         public int _shipX;
         public int _shipY;
+        public bool isHit;
     }
     public struct ShipType
     {
@@ -130,14 +131,14 @@ namespace day15battleship
         {
             //var pressedKey = Console.ReadKey();
             int shipFace = 0;
-            Console.WriteLine("readanssetship 돌입");
-            Console.WriteLine(pressedKey.Key);
+            //Console.WriteLine("readanssetship 돌입");
+            //Console.WriteLine(pressedKey.Key);
             switch (pressedKey.Key)
             {
                 case ConsoleKey.UpArrow: //키보드 위
                     shipFace = 1;
-                    Console.WriteLine("isshipgetout");
-                    Console.WriteLine(shipFace);
+                    //Console.WriteLine("isshipgetout");
+                    //Console.WriteLine(shipFace);
                     if (isShipGetOut(shipFace))
                     {
                         Console.WriteLine("isshipgetoutin");
@@ -148,10 +149,13 @@ namespace day15battleship
                             Console.WriteLine(_type._shipLength);
                             Console.WriteLine(_shipPos[0]._shipX);
                             Console.WriteLine(_shipPos[0]._shipY);*/
-                            _shipPos[i]._shipX = _shipPos[0]._shipX;//1
+                            _shipPos[i]._shipX = _shipPos[0]._shipX;
                                                                     //Console.WriteLine(_shipPos[i]._shipX);//디버그확인용
-                            _shipPos[i]._shipY = _shipPos[i - 1]._shipY + 1;//3
+                            _shipPos[i]._shipY = _shipPos[i - 1]._shipY + 1;
+                            _shipPos[i].isHit = false;
+
                                                                             //Console.WriteLine(_shipPos[i]._shipY);//디버그 확인용
+
 
                         }
                         Console.WriteLine("위쪽으로 설정되었습니다");
@@ -173,6 +177,7 @@ namespace day15battleship
                         {
                             _shipPos[i]._shipX = _shipPos[0]._shipX;
                             _shipPos[i]._shipY = _shipPos[i - 1]._shipY - 1;
+                            _shipPos[i].isHit = false;
                         }
                         Console.WriteLine("아래쪽으로 설정되었습니다");
                         _shipError = false;
@@ -193,6 +198,7 @@ namespace day15battleship
                         {
                             _shipPos[i]._shipX = _shipPos[i - 1]._shipX - 1;
                             _shipPos[i]._shipY = _shipPos[0]._shipY;
+                            _shipPos[i].isHit = false;
                         }
                         Console.WriteLine("왼쪽으로 설정되었습니다");
                         _shipError = false;
@@ -212,6 +218,7 @@ namespace day15battleship
                         {
                             _shipPos[i]._shipX = _shipPos[i - 1]._shipX + 1;
                             _shipPos[i]._shipY = _shipPos[0]._shipY;
+                            _shipPos[i].isHit = false;
                         }
                         Console.WriteLine("오른쪽으로 설정되었습니다");
                         _shipError = false;
@@ -232,6 +239,129 @@ namespace day15battleship
 
         }
 
+        public void ReadAndSetShip(int pointer)
+        {
+            //var pressedKey = Console.ReadKey();
+            int shipFace = 0;
+            //Console.WriteLine("readanssetship 돌입");
+            
+            switch (pointer)
+            {
+                case 1: //키보드 위
+                    shipFace = 1;
+                    //Console.WriteLine("isshipgetout");
+                    //Console.WriteLine(shipFace);
+                    if (isShipGetOut(shipFace))
+                    {
+                       // Console.WriteLine("isshipgetoutin");
+                        for (int i = 1; i < _type._shipLength; i++)
+                        {
 
-    }
+                            /*디버그용
+                            Console.WriteLine(_type._shipLength);
+                            Console.WriteLine(_shipPos[0]._shipX);
+                            Console.WriteLine(_shipPos[0]._shipY);*/
+                            _shipPos[i]._shipX = _shipPos[0]._shipX;//1
+                                                                    //Console.WriteLine(_shipPos[i]._shipX);//디버그확인용
+                            _shipPos[i]._shipY = _shipPos[i - 1]._shipY + 1;//3
+                                                                            //Console.WriteLine(_shipPos[i]._shipY);//디버그 확인용
+
+                        }
+                       // Console.WriteLine("위쪽으로 설정되었습니다");
+                        _shipError = false;
+                    }
+                    else
+                    {
+                        _shipError = true;
+                       // Console.WriteLine("errorU");
+                    }
+                    break;
+                case 2: //키보드 아래 
+
+                    shipFace = 2;
+                    //Console.WriteLine(shipFace);
+                    if (isShipGetOut(shipFace))
+                    {
+                        for (int i = 1; i < _type._shipLength; i++)
+                        {
+                            _shipPos[i]._shipX = _shipPos[0]._shipX;
+                            _shipPos[i]._shipY = _shipPos[i - 1]._shipY - 1;
+                        }
+                        //Console.WriteLine("아래쪽으로 설정되었습니다");
+                        _shipError = false;
+
+                    }
+                    else
+                    {
+                        _shipError = true;
+                        //Console.WriteLine("errorD");
+                    }
+                    break;
+                case 3:  //키보드 왼쪽
+                    shipFace = 3;
+                    //Console.WriteLine(shipFace);
+                    if (isShipGetOut(shipFace))
+                    {
+                        for (int i = 1; i < _type._shipLength; i++)
+                        {
+                            _shipPos[i]._shipX = _shipPos[i - 1]._shipX - 1;
+                            _shipPos[i]._shipY = _shipPos[0]._shipY;
+                        }
+                       // Console.WriteLine("왼쪽으로 설정되었습니다");
+                        _shipError = false;
+                    }
+                    else
+                    {
+                        _shipError = true;
+                        //Console.WriteLine("errorL");
+                    }
+                    break;
+                case 4:  //키보드 오른쪽 오류! 이중 for문을 사용했기 때문에 for문이 진행하는 방향으로 이동하면 계속 작동하여 커서를 항상 끝으로 밀어넣었음
+                    shipFace = 4;
+                   // Console.WriteLine(shipFace);
+                    if (isShipGetOut(shipFace))
+                    {
+                        for (int i = 1; i < _type._shipLength; i++)
+                        {
+                            _shipPos[i]._shipX = _shipPos[i - 1]._shipX + 1;
+                            _shipPos[i]._shipY = _shipPos[0]._shipY;
+                        }
+                        //Console.WriteLine("오른쪽으로 설정되었습니다");
+                        _shipError = false;
+                    }
+                    else
+                    {
+                        _shipError = true;
+                        //Console.WriteLine("errorR");
+                    }
+                    break;
+                default: //이외의 입력
+                   // Console.WriteLine("올바른 키가 아닙니다");
+                    _shipError = true;
+                    return;
+                    //break;
+            }
+
+
+        }
+        public void IsSheepSink()
+        {
+            int hitCount = 0;
+
+            for (int j=0;j< _type._shipLength; j++)
+            {
+                if (_shipPos[j].isHit)
+                {
+                    hitCount++;
+                }
+            }
+            if(hitCount == _type._shipLength)
+            {
+                Console.WriteLine($"{_type._shipType}침몰!");
+            }
+
+        }
+
+
+    }//ship 마지막
 }

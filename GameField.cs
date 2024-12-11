@@ -26,7 +26,7 @@ namespace day15battleship
 
 
         }
-        public void DrawGameField(Player player)
+        public void DrawGameField()
         {
 
         }
