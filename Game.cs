@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Channels;
@@ -7,9 +8,10 @@ using System.Threading.Tasks;
 
 namespace day15battleship
 {
-   
+    
     internal class Game
     {
+        public static bool _gameOver = false;
         Random random = new Random();
         public bool isKeyRight(ConsoleKeyInfo key)
         {
@@ -226,12 +228,15 @@ namespace day15battleship
                 _player.SetPlayerShipToField(_player._GameField, _player._Ships[4]);
             }
             _enemy.RandomShipSet();
-            Console.WriteLine("게임준비 완료!");
+            Console.WriteLine("게임준비 완료! 엔터를 눌러주세요!");
             Console.ReadKey();
             bool isMyTurn = true;
             int atkX;
             int atkY;
-            while (true)
+            Stopwatch timer = new Stopwatch();
+            timer.Start();
+            
+            while (!_gameOver)
             {
                 _player._GameField.DrawGameField();//게임판 그림
                 if (isMyTurn) 
@@ -240,13 +245,34 @@ namespace day15battleship
                     int.TryParse(Console.ReadLine(), out atkX);
                     Console.WriteLine("공격할 y좌표를 입력하십시오");
                     int.TryParse(Console.ReadLine(), out atkY);
-                    _player.Attack(atkX,atkY,_enemy);
+                    timer.Restart();
+                    while (timer.ElapsedMilliseconds<500)
+                    {
+
+                    }
+                    if(_enemy.isHit(atkX, atkY))
+                    {
+                        Console.WriteLine("맞췄습니다!");
+                    }
+                    _enemy.Attack(atkX,atkY,_enemy);//적에게 atkx,atky좌표 공격
                     isMyTurn = false;
+                    _player._GameField.DrawGameField();
                 }
                 else
                 {
+                    timer.Restart();
+                    while (timer.ElapsedMilliseconds < 500)
+                    {
+
+                    }
                     Console.WriteLine("적팀의 공격");
-                    _enemy.Attack(random.Next(0, 9), random.Next(0, 9), _player);
+                    atkX = random.Next(0, 9);
+                    atkY = random.Next(0,9);
+                    _player.Attack(atkX, atkY, _player);
+                    if (_player.isHit(atkX, atkY)) 
+                    {
+                        Console.WriteLine("공격당했습니다!");
+                    }
                     isMyTurn=true;
                 }
 
@@ -258,7 +284,7 @@ namespace day15battleship
 
             /// 컴퓨터가 무작위로 배의 위치를 설정하는 기능// 어느정도 구현
             /// 플레이어와 컴퓨터가 번갈아 가면서 플레이 하는 기능
-            /// 턴 구현=>좌표입력을 번갈아 가면서, 쏘는 것=> 좌표입력 => 어느정도 구현 완료, 맞았는지 체크하기=>테스트는 안했지만 구현 완료, 맞았을 때 침몰이면 침몰표시=>구현 필요, 게임판 그리기=>이모티콘이나 그림을 이용해서 구현해보기
+            ///  맞았을 때 침몰이면 침몰표시=>구현 완료 테스트 필요, 게임판 그리기=>테스트중
 
 
 

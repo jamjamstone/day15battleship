@@ -150,11 +150,10 @@ namespace day15battleship
                             Console.WriteLine(_shipPos[0]._shipX);
                             Console.WriteLine(_shipPos[0]._shipY);*/
                             _shipPos[i]._shipX = _shipPos[0]._shipX;
-                                                                    //Console.WriteLine(_shipPos[i]._shipX);//디버그확인용
+                            //Console.WriteLine(_shipPos[i]._shipX);//디버그확인용
                             _shipPos[i]._shipY = _shipPos[i - 1]._shipY + 1;
                             _shipPos[i].isHit = false;
-
-                                                                            //Console.WriteLine(_shipPos[i]._shipY);//디버그 확인용
+                            //Console.WriteLine(_shipPos[i]._shipY);//디버그 확인용
 
 
                         }
@@ -209,7 +208,7 @@ namespace day15battleship
                         Console.WriteLine("errorL");
                     }
                     break;
-                case ConsoleKey.RightArrow:  //키보드 오른쪽 오류! 이중 for문을 사용했기 때문에 for문이 진행하는 방향으로 이동하면 계속 작동하여 커서를 항상 끝으로 밀어넣었음
+                case ConsoleKey.RightArrow:  //키보드 오른쪽 
                     shipFace = 4;
                     Console.WriteLine(shipFace);
                     if (isShipGetOut(shipFace))
@@ -262,9 +261,9 @@ namespace day15battleship
                             Console.WriteLine(_shipPos[0]._shipX);
                             Console.WriteLine(_shipPos[0]._shipY);*/
                             _shipPos[i]._shipX = _shipPos[0]._shipX;//1
-                                                                    //Console.WriteLine(_shipPos[i]._shipX);//디버그확인용
+                            //Console.WriteLine(_shipPos[i]._shipX);//디버그확인용
                             _shipPos[i]._shipY = _shipPos[i - 1]._shipY + 1;//3
-                                                                            //Console.WriteLine(_shipPos[i]._shipY);//디버그 확인용
+                            //Console.WriteLine(_shipPos[i]._shipY);//디버그 확인용
 
                         }
                        // Console.WriteLine("위쪽으로 설정되었습니다");
@@ -316,7 +315,7 @@ namespace day15battleship
                         //Console.WriteLine("errorL");
                     }
                     break;
-                case 4:  //키보드 오른쪽 오류! 이중 for문을 사용했기 때문에 for문이 진행하는 방향으로 이동하면 계속 작동하여 커서를 항상 끝으로 밀어넣었음
+                case 4:  //키보드 오른쪽 
                     shipFace = 4;
                    // Console.WriteLine(shipFace);
                     if (isShipGetOut(shipFace))
@@ -347,7 +346,7 @@ namespace day15battleship
         public void IsSheepSink()
         {
             int hitCount = 0;
-
+            int sinkShip = 0;
             for (int j=0;j< _type._shipLength; j++)
             {
                 if (_shipPos[j].isHit)
@@ -358,6 +357,12 @@ namespace day15battleship
             if(hitCount == _type._shipLength)
             {
                 Console.WriteLine($"{_type._shipType}침몰!");
+                sinkShip++;
+            }
+            if(sinkShip == 5)
+            {
+                Console.WriteLine("전멸했습니다!.");
+                Game._gameOver = true;
             }
 
         }

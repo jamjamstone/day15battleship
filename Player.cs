@@ -13,6 +13,7 @@ namespace day15battleship
         public GameField _GameField;
         public bool _error = true;
         Random random = new Random();
+        
         public Player()
         {
             _Ships = new Ship[5];//5개의 Ship이 들어간 배열
@@ -42,6 +43,10 @@ namespace day15battleship
                             if (i == ship._shipPos[k]._shipY && j == ship._shipPos[k]._shipX)
                             {
                                 gameField._gameField[i, j] = 1;
+                                if (ship._shipPos[k].isHit)
+                                {
+                                    gameField._gameField[i, j] = 2;
+                                }
                                 Console.WriteLine("배의 일부분 할당");
                             }
                         }
@@ -112,12 +117,16 @@ namespace day15battleship
             _error = true;
         }
 
-        public void Attack(int x, int y,Player enemy)
+        public void Attack(int x, int y,Player enemy)//공격하는 좌표->x,y
         {
-            if (isHit(x, y, enemy))
+            if (isHit(x, y))//호출한 대상이 맞았냐
             {
                 enemy._GameField._gameField[x, y] = 0;
-            }else
+                for (int i = 0; i < 5; i++) {
+                    enemy._Ships[i].IsSheepSink();
+                }
+            }
+            else
             {
 
             }
@@ -125,17 +134,17 @@ namespace day15battleship
         }
 
 
-        public bool isHit(int x, int y,Player player)
+        public bool isHit(int x, int y)
         {
             for (int i = 0; i < 5; i++)
             {
-                for (int j = 0; j < player._Ships[i]._shipPos.Length; j++)
+                for (int j = 0; j < _Ships[i]._shipPos.Length; j++)
                 {
-                    if (player._Ships[i]._shipPos[j]._shipX == x)
+                    if (_Ships[i]._shipPos[j]._shipX == x)
                     {
-                        if (player._Ships[i]._shipPos[j]._shipY == y)
+                        if (_Ships[i]._shipPos[j]._shipY == y)
                         {
-                            player._Ships[i]._shipPos[j].isHit = true;
+                            _Ships[i]._shipPos[j].isHit = true;
                             return true;
                         }
                     }
