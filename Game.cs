@@ -54,11 +54,21 @@ namespace day15battleship
             bool settingShipSwitch = true;
             while (_player._error)
             {
-                Console.WriteLine("5칸짜리 전함을 설치할 좌표를 선택해 주십시오");//에러 조건 최초로 에러나게 할당 할 때
-                Console.WriteLine("선수의 x좌표");
-                int.TryParse(Console.ReadLine(), out _player._Ships[0]._shipPos[0]._shipX);
-                Console.WriteLine("선수의 y좌표");
-                int.TryParse(Console.ReadLine(), out _player._Ships[0]._shipPos[0]._shipY);
+                while (true)
+                {
+                    Console.WriteLine("5칸짜리 전함을 설치할 좌표를 선택해 주십시오");
+                    Console.WriteLine("선수의 x좌표");
+                    int.TryParse(Console.ReadLine(), out _player._Ships[0]._shipPos[0]._shipX);
+                    Console.WriteLine("선수의 y좌표");
+                    int.TryParse(Console.ReadLine(), out _player._Ships[0]._shipPos[0]._shipY);
+                    if (_player._Ships[0]._shipPos[0]._shipX < 10 && _player._Ships[0]._shipPos[0]._shipX >= 0)
+                    {
+                        if (0 <= _player._Ships[0]._shipPos[0]._shipY && _player._Ships[0]._shipPos[0]._shipY < 10)
+                        {
+                            break;
+                        }
+                    }
+                }
                 Console.WriteLine("전함의 방향을 선택해 주십시오");
                 _player._Ships[0]._shipPos[0].isHit = false;
                 settingShipSwitch = true;
@@ -87,13 +97,24 @@ namespace day15battleship
                 _player.SetPlayerShipToField(_player._GameField, _player._Ships[0]);
             }
             _player._error = true;
+            Console.Clear();
             while (_player._error)
             {
-                Console.WriteLine("4칸짜리 항공모함을 설치할 좌표를 선택해 주십시오");
-                Console.WriteLine("선수의 x좌표");
-                int.TryParse(Console.ReadLine(), out _player._Ships[1]._shipPos[0]._shipX);
-                Console.WriteLine("선수의 y좌표");
-                int.TryParse(Console.ReadLine(), out _player._Ships[1]._shipPos[0]._shipY);
+                while (true)
+                {
+                    Console.WriteLine("4칸짜리 항공모함을 설치할 좌표를 선택해 주십시오");
+                    Console.WriteLine("선수의 x좌표");
+                    int.TryParse(Console.ReadLine(), out _player._Ships[1]._shipPos[0]._shipX);
+                    Console.WriteLine("선수의 y좌표");
+                    int.TryParse(Console.ReadLine(), out _player._Ships[1]._shipPos[0]._shipY);
+                    if (_player._Ships[1]._shipPos[0]._shipX < 10 && _player._Ships[1]._shipPos[0]._shipX >= 0)
+                    {
+                        if (0 <= _player._Ships[1]._shipPos[0]._shipY && _player._Ships[1]._shipPos[0]._shipY < 10)
+                        {
+                            break;
+                        }
+                    }
+                }
                 Console.WriteLine("항공모함의 방향을 선택해 주십시오");
                 _player._Ships[1]._shipPos[0].isHit = false;
                 settingShipSwitch = true;
@@ -125,14 +146,25 @@ namespace day15battleship
                 }
                 _player.SetPlayerShipToField(_player._GameField, _player._Ships[1]);
             }
+            Console.Clear();
             _player._error = true;
             while (_player._error)
             {
-                Console.WriteLine("3칸짜리 순양함을 설치할 좌표를 선택해 주십시오");
-                Console.WriteLine("선수의 x좌표");
-                int.TryParse(Console.ReadLine(), out _player._Ships[2]._shipPos[0]._shipX);
-                Console.WriteLine("선수의 y좌표");
-                int.TryParse(Console.ReadLine(), out _player._Ships[2]._shipPos[0]._shipY);
+                while (true)
+                {
+                    Console.WriteLine("3칸짜리 순양함을 설치할 좌표를 선택해 주십시오");
+                    Console.WriteLine("선수의 x좌표");
+                    int.TryParse(Console.ReadLine(), out _player._Ships[2]._shipPos[0]._shipX);
+                    Console.WriteLine("선수의 y좌표");
+                    int.TryParse(Console.ReadLine(), out _player._Ships[2]._shipPos[0]._shipY);
+                    if (_player._Ships[2]._shipPos[0]._shipX < 10 && _player._Ships[2]._shipPos[0]._shipX >= 0)
+                    {
+                        if (0 <= _player._Ships[2]._shipPos[0]._shipY && _player._Ships[2]._shipPos[0]._shipY < 10)
+                        {
+                            break;
+                        }
+                    }
+                }
                 Console.WriteLine("순양함의 방향을 선택해 주십시오");
                 _player._Ships[2]._shipPos[0].isHit = false;
                 settingShipSwitch = true;
@@ -159,14 +191,25 @@ namespace day15battleship
                 }
                 _player.SetPlayerShipToField(_player._GameField, _player._Ships[2]);
             }
+            Console.Clear();
             _player._error = true;
             while (_player._error)
             {
-                Console.WriteLine("2칸짜리 구축함을 설치할 좌표를 선택해 주십시오");
-                Console.WriteLine("선수의 x좌표");
-                int.TryParse(Console.ReadLine(), out _player._Ships[3]._shipPos[0]._shipX);
-                Console.WriteLine("선수의 y좌표");
-                int.TryParse(Console.ReadLine(), out _player._Ships[3]._shipPos[0]._shipY);
+                while (true)
+                {
+                    Console.WriteLine("2칸짜리 구축함을 설치할 좌표를 선택해 주십시오");
+                    Console.WriteLine("선수의 x좌표");
+                    int.TryParse(Console.ReadLine(), out _player._Ships[3]._shipPos[0]._shipX);
+                    Console.WriteLine("선수의 y좌표");
+                    int.TryParse(Console.ReadLine(), out _player._Ships[3]._shipPos[0]._shipY);
+                    if (_player._Ships[3]._shipPos[0]._shipX < 10 && _player._Ships[3]._shipPos[0]._shipX >= 0)
+                    {
+                        if (0 <= _player._Ships[3]._shipPos[0]._shipY && _player._Ships[3]._shipPos[0]._shipY < 10)
+                        {
+                            break;
+                        }
+                    }
+                }
                 _player._Ships[3]._shipPos[0].isHit = false;
                 Console.WriteLine("구축함의 방향을 선택해 주십시오");
                 settingShipSwitch = true;
@@ -193,14 +236,25 @@ namespace day15battleship
                 }
                 _player.SetPlayerShipToField(_player._GameField, _player._Ships[3]);
             }
+            Console.Clear();
             _player._error = true;
             while (_player._error)
             {
-                Console.WriteLine("1칸짜리 잠수함을 설치할 좌표를 선택해 주십시오");
-                Console.WriteLine("선수의 x좌표");
-                int.TryParse(Console.ReadLine(), out _player._Ships[4]._shipPos[0]._shipX);
-                Console.WriteLine("선수의 y좌표");
-                int.TryParse(Console.ReadLine(), out _player._Ships[4]._shipPos[0]._shipY);
+                
+                while (true) {
+                    Console.WriteLine("1칸짜리 잠수함을 설치할 좌표를 선택해 주십시오");
+                    Console.WriteLine("선수의 x좌표");
+                    int.TryParse(Console.ReadLine(), out _player._Ships[4]._shipPos[0]._shipX);
+                    Console.WriteLine("선수의 y좌표");
+                    int.TryParse(Console.ReadLine(), out _player._Ships[4]._shipPos[0]._shipY);
+                    if(_player._Ships[4]._shipPos[0]._shipX<10&& _player._Ships[4]._shipPos[0]._shipX >= 0)
+                    {
+                        if(0<=_player._Ships[4]._shipPos[0]._shipY&& _player._Ships[4]._shipPos[0]._shipY < 10)
+                        {
+                            break;
+                        }
+                    }
+                }
                 _player._Ships[4]._shipPos[0].isHit = false;
                 Console.WriteLine("잠수함의 방향을 선택해 주십시오");
                 settingShipSwitch = true;
@@ -227,6 +281,7 @@ namespace day15battleship
                 }//여기까지 진행시 1~5번까지의 모든 배의 좌표가 설정된다.//배가 겹쳐있을 경우 생각 안되있음 =>해결, 위 기능 가능하면 메소드로 만들어 보자
                 _player.SetPlayerShipToField(_player._GameField, _player._Ships[4]);
             }
+            Console.Clear();
             _enemy.RandomShipSet();
             Console.WriteLine("게임준비 완료! 엔터를 눌러주세요!");
             Console.ReadKey();
@@ -243,6 +298,7 @@ namespace day15battleship
                 {
                     Console.WriteLine("공격할 x좌표를 입력하십시오");
                     int.TryParse(Console.ReadLine(), out atkX);
+                    
                     Console.WriteLine("공격할 y좌표를 입력하십시오");
                     int.TryParse(Console.ReadLine(), out atkY);
                     timer.Restart();

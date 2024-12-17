@@ -42,7 +42,7 @@ namespace day15battleship
                         {
                             if (i == ship._shipPos[k]._shipY && j == ship._shipPos[k]._shipX)
                             {
-                                gameField._gameField[i, j] = 1;
+                                gameField._gameField[j, i] = 1;
                                 if (ship._shipPos[k].isHit)
                                 {
                                     gameField._gameField[i, j] = 2;
@@ -70,7 +70,7 @@ namespace day15battleship
                     {
                         if (i == ship._shipPos[k]._shipY && j == ship._shipPos[k]._shipX)
                         {
-                            if (gameField._gameField[i, j] == 1)
+                            if (gameField._gameField[j, i] == 1)
                             {
                                 Console.WriteLine("배가 겹침");
                                 return false;// 배가 겹쳐있다.

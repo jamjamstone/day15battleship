@@ -44,23 +44,23 @@ namespace day15battleship
             {
                 case 1:
                     _type._shipType = "잠수함";
-                    Console.WriteLine("submarine");
+                   // Console.WriteLine("submarine");
                     break;
                 case 2:
                     _type._shipType = "구축함";
-                    Console.WriteLine("goo");
+                    //Console.WriteLine("goo");
                     break;
                 case 3:
                     _type._shipType = "순양함";
-                    Console.WriteLine("soon");
+                    //Console.WriteLine("soon");
                     break;
                 case 4:
                     _type._shipType = "항공모함";
-                    Console.WriteLine("air");
+                    //Console.WriteLine("air");
                     break;
                 case 5:
                     _type._shipType = "전함";
-                    Console.WriteLine("battle");
+                    //Console.WriteLine("battle");
                     break;
                 default:
                     break;
