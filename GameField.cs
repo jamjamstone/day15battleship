@@ -30,6 +30,8 @@ namespace day15battleship
         }
         public void DrawGameField()// 아스키 아트를 통해서 구축해보려고 노력중 하지만 커서를 움직여도 순간 내려가서 덮어씌어짐, 이를 해결하려면 아스키아트 한줄당 커서를 새로 갱신해야 함...
         {
+            
+            
             //strint emptyShip=string.Format()
             Console.Clear();
             //Console.SetCursorPosition(0,0);
@@ -38,31 +40,89 @@ namespace day15battleship
                 for (int j = 0; j < 10; j++)
                 {
                     //Console.SetCursorPosition((j * 50) + 1, (i * 17) + 1);
-                    if (_gameField[j, i] == 0)
+                    if (_gameField[j, i] == 0)//맨 바다
                     {
+                        Console.Write(" □ ");
                         
-                        Console.Write(_emptySea);
                         //Console.Write(_emptySea);
-                        Console.SetCursorPosition((j*50)+1, (i*17)+1);
+                        //Console.Write(_emptySea);
+                        //Console.SetCursorPosition((j*50)+1, (i*17)+1);
                     }
-                    else if (_gameField[j, i] == 1)
+                    else if (_gameField[j, i] == 1)//배
                     {
 
-                        
-                        Console.Write($"{_shipParts,-(v + 1):5}");
-                        Console.SetCursorPosition((j * 50) + 1, (i * 17) + 1);
+                        Console.Write(" ◆ ");
+                        //Console.Write($"{_shipParts,-(v + 1):5}");
+                        //Console.SetCursorPosition((j * 50) + 1, (i * 17) + 1);
                     }
-                    else if(_gameField[j, i] == 2)
+                    else if(_gameField[j, i] == 2)//피격된 배
                     {
-                        Console.Write(_hitShip);
-                        Console.SetCursorPosition((j * 50) + 1, (i * 17) + 1);
+                        Console.Write(" ※ ");
+                        //Console.Write(_hitShip);
+                        //Console.SetCursorPosition((j * 50) + 1, (i * 17) + 1);
                     }
                 }
-                Console.SetCursorPosition(0, (i * 17) + 1);
-                // Console.WriteLine();
+                //Console.SetCursorPosition(0, (i * 17) + 1);
+                Console.WriteLine();
             }
+            
+
+
+        }
+        public void DrawGameField(Player player)// 아스키 아트를 통해서 구축해보려고 노력중 하지만 커서를 움직여도 순간 내려가서 덮어씌어짐, 이를 해결하려면 아스키아트 한줄당 커서를 새로 갱신해야 함...
+        {
+
+
+            //strint emptyShip=string.Format()
+            Console.Clear();
+            //Console.SetCursorPosition(0,0);
+            for (int i = 9; i >= 0; i--)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    //Console.SetCursorPosition((j * 50) + 1, (i * 17) + 1);
+                    if (_gameField[j, i] == 0)//맨 바다
+                    {
+                        Console.Write(" □ ");
+
+                        //Console.Write(_emptySea);
+                        //Console.Write(_emptySea);
+                        //Console.SetCursorPosition((j*50)+1, (i*17)+1);
+                    }
+                    else if (_gameField[j, i] == 1)//배
+                    {
+
+                        Console.Write(" ◆ ");
+                        //Console.Write($"{_shipParts,-(v + 1):5}");
+                        //Console.SetCursorPosition((j * 50) + 1, (i * 17) + 1);
+                    }
+                    else if (_gameField[j, i] == 2)//피격된 배
+                    {
+                        Console.Write(" ※ ");
+                        //Console.Write(_hitShip);
+                        //Console.SetCursorPosition((j * 50) + 1, (i * 17) + 1);
+                    }
+                }
+                //Console.SetCursorPosition(0, (i * 17) + 1);
+                Console.WriteLine();
+            }
+            for (int i = 9; i >= 0; i--)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+
+                    if (player._GameField._gameField[j, i] == 2)//피격된 배
+                    {
+                        Console.Write($"공격 성공한 좌표:{j},{i} ");
+                        Console.WriteLine();
+
+                    }
+                }
+
+            }
+
+
         }
 
-
-    }
+    }//end
 }

@@ -293,7 +293,7 @@ namespace day15battleship
             
             while (!_gameOver)
             {
-                _player._GameField.DrawGameField();//게임판 그림
+                _player._GameField.DrawGameField(_enemy);//게임판 그림
                 if (isMyTurn) 
                 {
                     Console.WriteLine("공격할 x좌표를 입력하십시오");
@@ -309,10 +309,15 @@ namespace day15battleship
                     if(_enemy.isHit(atkX, atkY))
                     {
                         Console.WriteLine("맞췄습니다!");
+                        timer.Restart();
+                        while (timer.ElapsedMilliseconds < 500)
+                        {
+
+                        }
                     }
                     _enemy.Attack(atkX,atkY,_enemy);//적에게 atkx,atky좌표 공격
                     isMyTurn = false;
-                    _player._GameField.DrawGameField();
+                    _player._GameField.DrawGameField(_enemy);
                 }
                 else
                 {
@@ -322,14 +327,26 @@ namespace day15battleship
 
                     }
                     Console.WriteLine("적팀의 공격");
-                    atkX = random.Next(0, 9);
-                    atkY = random.Next(0,9);
+                    timer.Restart();
+                    while (timer.ElapsedMilliseconds < 500)
+                    {
+
+                    }
+                    atkX = random.Next(0, 10);
+                    atkY = random.Next(0,10);
                     _player.Attack(atkX, atkY, _player);
                     if (_player.isHit(atkX, atkY)) 
                     {
+
                         Console.WriteLine("공격당했습니다!");
+                        timer.Restart();
+                        while (timer.ElapsedMilliseconds < 500)
+                        {
+
+                        }
                     }
-                    isMyTurn=true;
+                    
+                    isMyTurn =true;
                 }
 
 

@@ -121,15 +121,15 @@ namespace day15battleship
         {
             if (isHit(x, y))//호출한 대상이 맞았냐
             {
-                enemy._GameField._gameField[x, y] = 0;
+                enemy._GameField._gameField[x, y] = 2;
                 for (int i = 0; i < 5; i++) {
                     enemy._Ships[i].IsSheepSink();
                 }
             }
-            else
-            {
-
-            }
+            //else
+            //{
+            //
+            //}
 
         }
 
